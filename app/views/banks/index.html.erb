@@ -1,6 +1,6 @@
-<h1>Listing banks</h1>
+<% title "Listing banks" %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -19,7 +19,7 @@
       <tr>
         <td><%= bank.name %></td>
         <td><%= bank.account_number %></td>
-        <td><%= bank.cheque_image %></td>
+        <td><%= image_tag bank.cheque_image_url(:medium).to_s, size: "100x100" %></td>
         <td><%= bank.status %></td>
         <td><%= bank.user %></td>
         <td><%= link_to 'Show', bank %></td>

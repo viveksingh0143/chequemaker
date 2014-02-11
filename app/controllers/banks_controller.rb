@@ -1,5 +1,6 @@
 class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
+  layout 'backend'
 
   # GET /banks
   # GET /banks.json
@@ -25,7 +26,7 @@ class BanksController < ApplicationController
   # POST /banks.json
   def create
     @bank = Bank.new(bank_params)
-
+    @bank.user = current_user
     respond_to do |format|
       if @bank.save
         format.html { redirect_to @bank, notice: 'Bank was successfully created.' }

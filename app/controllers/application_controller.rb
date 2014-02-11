@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 
   def authorize
     if !current_permission.allow?(params[:controller], params[:action], current_resource)
-      redirect_to root_url, alert: "You have no permission to access this page"
+      redirect_to signin_url, alert: "You have no permission to access this page"
     end
   end
 end
