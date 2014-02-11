@@ -1,0 +1,38 @@
+<% title "Password Reset" %>
+
+<div class="row">
+	<div class="signin-title">
+		<h1>Cheque Maker</h1>
+		<!--h5>Well known content syndication company worldwide</h5-->
+	</div>
+	<div class="signin-panel-container">
+		<div class="panel panel-signin">
+			<div class="panel-heading">
+				<h3 class="panel-title user-icon"><span class="fa-stack fa-3x"> <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-user fa-stack-1x fa-inverse"></i> </span><span class="text"><%= yield :title%></span></h3>
+			</div>
+			<div class="panel-body">
+				<%= form_tag password_resets_path, class: "form-horizontal", role: :form do %>
+					<%= render 'layouts/messages' %>
+					<div class="form-group">
+						<%= label_tag :email, "E-Mail", class: 'col-xs-12 col-sm-4 control-label' %>
+						<div class="col-xs-12 col-sm-8">
+							<%= text_field_tag :email, params[:email], class: "form-control", placeholder: "E-Mail" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<%= submit_tag "Reset Password", class: "btn btn-block signin" %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<div class="panel-footer">
+				<ul class="nav nav-pills nav-justified">
+					<%= content_tag(:li, link_to(fa_stacked_icon("home brown", base: "circle brown-lite", text: "Back to Site"), root_url), :class => 'li_class') %>
+					<%= content_tag(:li, link_to(fa_stacked_icon("check brown", base: "circle brown-lite", text: "Sign In"), signin_path), :class => 'li_class') %>
+					<%= content_tag(:li, link_to(fa_stacked_icon("check brown", base: "circle brown-lite", text: "Sign Up"), signup_path), :class => 'li_class') %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

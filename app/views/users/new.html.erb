@@ -1,0 +1,57 @@
+<% title "User Registration" %>
+
+<div class="row">
+	<div class="signin-title">
+		<h1>Cheque Maker</h1>
+		<!--h5>Well known content syndication company worldwide</h5-->
+	</div>
+	<div class="signin-panel-container">
+		<div class="panel panel-signin">
+			<div class="panel-heading">
+				<h3 class="panel-title user-icon"><span class="fa-stack fa-3x"> <i class="fa fa-circle fa-stack-2x"></i> <i class="fa fa-user fa-stack-1x fa-inverse"></i> </span><span class="text"><%= yield :title%></span></h3>
+			</div>
+			<div class="panel-body">
+				<%= form_for @user, html: {class: "form-horizontal", role: :form} do |f| %>
+					<%= render 'layouts/messages' %>
+					<%= render 'layouts/model_error', :model => @user %>
+					<div class="form-group">
+						<%= f.label :username, 'Username', class: "col-xs-12 col-sm-4 control-label" %>
+						<div class="col-xs-12 col-sm-8">
+							<%= f.text_field :username, class: "form-control", placeholder: "Username" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= f.label :email, 'E-Mail', class: "col-xs-12 col-sm-4 control-label" %>
+						<div class="col-xs-12 col-sm-8">
+							<%= f.text_field :email, class: "form-control", placeholder: "E-Mail" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= f.label :password, 'Password', class: "col-xs-12 col-sm-4 control-label" %>
+						<div class="col-xs-12 col-sm-8">
+							<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= f.label :password_confirmation, 'Password Confirmation', class: "col-xs-12 col-sm-4 control-label" %>
+						<div class="col-xs-12 col-sm-8">
+							<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<%= f.submit "Sign Up", class: "btn btn-block signin" %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<div class="panel-footer">
+				<ul class="nav nav-pills nav-justified">
+					<%= content_tag(:li, link_to(fa_stacked_icon("home brown", base: "circle brown-lite", text: "Back to Site"), root_url), :class => 'li_class') %>
+					<%= content_tag(:li, link_to(fa_stacked_icon("unlock-alt brown", base: "circle brown-lite", text: "Forget Password"), root_url), :class => 'li_class') %>
+					<%= content_tag(:li, link_to(fa_stacked_icon("check brown", base: "circle brown-lite", text: "Sign In"), signin_path), :class => 'li_class') %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

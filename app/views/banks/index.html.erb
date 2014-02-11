@@ -1,0 +1,35 @@
+<h1>Listing banks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Account number</th>
+      <th>Cheque image</th>
+      <th>Status</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @banks.each do |bank| %>
+      <tr>
+        <td><%= bank.name %></td>
+        <td><%= bank.account_number %></td>
+        <td><%= bank.cheque_image %></td>
+        <td><%= bank.status %></td>
+        <td><%= bank.user %></td>
+        <td><%= link_to 'Show', bank %></td>
+        <td><%= link_to 'Edit', edit_bank_path(bank) %></td>
+        <td><%= link_to 'Destroy', bank, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bank', new_bank_path %>
