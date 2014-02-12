@@ -1,3 +1,5 @@
+<% title @bank.name %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -6,13 +8,12 @@
 </p>
 
 <p>
-  <strong>Account number:</strong>
-  <%= @bank.account_number %>
+  <%= image_tag @bank.cheque_image_url(:large).to_s, width: '400' %>
 </p>
 
 <p>
-  <strong>Cheque image:</strong>
-  <%= @bank.cheque_image %>
+  <strong>Account number:</strong>
+  <%= @bank.account_number %>
 </p>
 
 <p>
@@ -22,8 +23,8 @@
 
 <p>
   <strong>User:</strong>
-  <%= @bank.user %>
+  <%= @bank.user.username %>
 </p>
 
-<%= link_to 'Edit', edit_bank_path(@bank) %> |
-<%= link_to 'Back', banks_path %>
+<%= link_to 'Edit', edit_bank_path(@bank), class: 'btn btn-primary' %> |
+<%= link_to 'Back', banks_path, class: 'btn btn-primary' %>

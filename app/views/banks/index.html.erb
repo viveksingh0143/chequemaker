@@ -19,9 +19,9 @@
       <tr>
         <td><%= bank.name %></td>
         <td><%= bank.account_number %></td>
-        <td><%= image_tag bank.cheque_image_url(:medium).to_s, size: "100x100" %></td>
+        <td><%= image_tag bank.cheque_image_url(:medium).to_s, height: '100' %></td>
         <td><%= bank.status %></td>
-        <td><%= bank.user %></td>
+        <td><%= bank.user.username %></td>
         <td><%= link_to 'Show', bank %></td>
         <td><%= link_to 'Edit', edit_bank_path(bank) %></td>
         <td><%= link_to 'Destroy', bank, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Bank', new_bank_path %>
+<%= link_to 'New Bank', new_bank_path, class: 'btn btn-primary' %>

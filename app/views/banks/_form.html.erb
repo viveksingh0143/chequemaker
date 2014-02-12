@@ -17,7 +17,7 @@
 		<%= f.label :cheque_image, class: "col-xs-12 col-sm-4 control-label" %>
 		<div class="col-xs-12 col-sm-8">
 			<%= f.file_field :cheque_image %>
-			<td><%= image_tag @bank.cheque_image_url(:thumb).to_s, size: "100x100" %></td>
+			<td><%= image_tag @bank.cheque_image_url(:medium).to_s, width: "200" %></td>
 		</div>
 	</div>
 	<div class="form-group">
@@ -32,21 +32,4 @@
 			<%= f.submit "Submit", class: "btn btn-block signin" %>
 		</div>
 	</div>
-<% end %>
-
-
-
-<%= simple_form_for(@bank, :html=> {  class: "form-horizontal", role: :form}) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :account_number %>
-    <%= f.input :cheque_image %>
-    <%= f.input :status %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
 <% end %>

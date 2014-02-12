@@ -7,8 +7,9 @@
       <th>Cheque date</th>
       <th>Amount</th>
       <th>Account payee</th>
-      <th>User</th>
       <th>Bank</th>
+      <th>User</th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -22,9 +23,10 @@
         <td><%= transaction.cheque_date %></td>
         <td><%= transaction.amount %></td>
         <td><%= transaction.account_payee %></td>
-        <td><%= transaction.user %></td>
-        <td><%= transaction.bank %></td>
+        <td><%= transaction.bank.name %></td>
+        <td><%= transaction.user.username %></td>
         <td><%= link_to 'Show', transaction %></td>
+        <td><%= link_to 'Download Cheque', transaction_path(transaction.id, :format => 'pdf') %></td>
         <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
         <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -34,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Transaction', new_transaction_path %>
+<%= link_to 'New Transaction', new_transaction_path, class: 'btn btn-primary' %>

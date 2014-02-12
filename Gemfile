@@ -48,12 +48,14 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
+gem 'jquery-ui-rails'
 
 # Use as ImageMagick Interface
 gem 'mini_magick'
 
 # Uploading Files
 gem 'carrierwave'
+gem 'prawn'
 
 group :test, :development do
   gem 'rspec-rails', '~> 3.0.0.beta1' 

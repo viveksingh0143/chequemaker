@@ -35,4 +35,5 @@ ChequeMaker::Application.configure do
     :port => 25,
     :domain => "whatever.com",
   }
+
 end

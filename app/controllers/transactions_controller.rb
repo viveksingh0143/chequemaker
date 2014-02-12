@@ -12,6 +12,14 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        pdf = TransactionPdf.new(@transaction, view_context)
+        send_data pdf.render, filename: "check_#{@transaction.created_at.strftime("%d/%m/%Y")}.pdf", type: "application/pdf", disposition: 'inline' 
+      end
+    end
   end
 
   # GET /transactions/new
@@ -27,6 +35,7 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
+    @transaction.user = current_user
 
     respond_to do |format|
       if @transaction.save
