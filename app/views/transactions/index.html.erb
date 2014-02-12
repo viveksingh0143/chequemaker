@@ -20,13 +20,13 @@
     <% @transactions.each do |transaction| %>
       <tr>
         <td><%= transaction.payee %></td>
-        <td><%= transaction.cheque_date %></td>
+        <td><%= transaction.cheque_date.to_s(:long) %></td>
         <td><%= transaction.amount %></td>
         <td><%= transaction.account_payee %></td>
         <td><%= transaction.bank.name %></td>
         <td><%= transaction.user.username %></td>
         <td><%= link_to 'Show', transaction %></td>
-        <td><%= link_to 'Download Cheque', transaction_path(transaction.id, :format => 'pdf') %></td>
+        <td><%= link_to 'Print Cheque', transaction_path(transaction.id, :format => 'pdf') %></td>
         <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
         <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
