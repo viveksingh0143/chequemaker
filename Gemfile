@@ -39,7 +39,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt-ruby', '~> 3.1.2', :require => "bcrypt"
 # gem 'bcrypt-ruby', '~> 3.1.2', :require => "bcrypt"
 # gem 'bcrypt-ruby'
 
@@ -47,7 +47,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'capistrano', '2.15.5', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
@@ -69,15 +69,16 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.0.0.beta1' 
 end
 
+# rails generate simple_form:install --foundation
+gem 'simple_form', '~> 3.0.0.rc'
+
+
 group :development do
   # Rails Form Creation
   # rails generate simple_form:install --bootstrap
-  # rails generate simple_form:install --foundation
-  gem 'simple_form', '~> 3.0.0.rc'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'quiet_assets'
-  gem 'capistrano'
 end
 
 group :test do

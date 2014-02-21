@@ -251,7 +251,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass
   bootstrap-will_paginate
-  capistrano
+  capistrano (= 2.15.5)
   capybara
   carrierwave
   coffee-rails (~> 4.0.0)
