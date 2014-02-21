@@ -7,7 +7,8 @@ class Permission
     if user
       allow :sessions, [:index]
       allow :users, [:edit, :update]
-      allow :posts, [:index, :new, :create, :edit, :update]
+      allow :banks, [:index, :new, :create, :edit, :update]
+      allow :transactions, [:index, :new, :create, :edit, :update]
       allow_all if user.admin?
     end
   end
