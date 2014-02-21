@@ -2,6 +2,9 @@ class SessionsController < ApplicationController
   layout 'noheaderfooter', only: [:new, :create]
 
   def new
+    if current_user
+      redirect_to dashboard_path
+    end
   end
   
   def index
