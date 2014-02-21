@@ -12,8 +12,10 @@ class TransactionPdf < Prawn::Document
   end
   
   def logo
-    logopath =  "#{Rails.root}/public" + @transaction.bank.cheque_image_url.to_s
-    image logopath, :width => 810, :height => 360
+    if FileTest.exist?("#{Rails.root}/public" + @transaction.bank.cheque_image_url.to_s) && File.file?("#{Rails.root}/public" + @transaction.bank.cheque_image_url.to_s)
+      logopath =  "#{Rails.root}/public" + @transaction.bank.cheque_image_url.to_s
+      image logopath, :width => 810, :height => 360      
+    end
   end
   
   def print_date

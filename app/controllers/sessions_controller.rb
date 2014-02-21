@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
 #        cookies[:auth_token] = user.auth_token
       end
       flash[:success] = "Signin successfully!"
-      redirect_to transactions_path
+      redirect_to dashboard_path
     else
       flash[:error] = "Username/E-Mail or password is invalid."
       render :new

@@ -7,12 +7,13 @@ ChequeMaker::Application.routes.draw do
   get 'signup' , to: 'users#new',        as: 'signup'
   get 'signin' , to: 'sessions#new',     as: 'signin'
   get 'signout', to: 'sessions#destroy', as: 'signout'
+  get 'dashboard', to: 'sessions#index', as: 'dashboard'
   
   resources :users
   resources :sessions
   resources :password_resets
 
-  root 'sessions#index'
+  root 'sessions#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
