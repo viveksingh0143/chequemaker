@@ -2,8 +2,10 @@ class Permission
   def initialize(user)
     allow :users, [:new, :create]
     allow :sessions, [:new, :create, :destroy]
+    allow :password_resets, [:new, :create, :edit, :update]
 #    allow :posts, [:index, :show]
     if user
+      allow :sessions, [:index]
       allow :users, [:edit, :update]
       allow :posts, [:index, :new, :create, :edit, :update]
       allow_all if user.admin?

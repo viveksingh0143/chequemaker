@@ -3,8 +3,14 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+group :development do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -38,7 +44,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # gem 'bcrypt-ruby'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
@@ -56,6 +62,8 @@ gem 'mini_magick'
 # Uploading Files
 gem 'carrierwave'
 gem 'prawn'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 group :test, :development do
   gem 'rspec-rails', '~> 3.0.0.beta1' 
@@ -69,6 +77,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'quiet_assets'
+  gem 'capistrano'
 end
 
 group :test do

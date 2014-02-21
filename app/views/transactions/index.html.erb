@@ -1,14 +1,28 @@
 <% title "Listing transaction" %>
 
+<%= form_tag transactions_path, :method => 'get', :class => "form-inline", :role => "form" do %>
+  <%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
+  
+  <div class="form-group">
+    <%= select_tag(:search_column, options_for_select([["Payee Name", :payee], ["Cheque Date", :cheque_date], ["Account Payee", :account_payee], ["Paid Status", :paid_status]], params[:search_column]), :class => 'form-control') %>
+  </div>
+  <div class="form-group">
+    <%= text_field_tag :search_text, params[:search_text], :class => 'form-control' %>
+  </div>
+  <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>
-      <th>Payee</th>
-      <th>Cheque date</th>
-      <th>Amount</th>
-      <th>Account payee</th>
-      <th>Bank</th>
-      <th>User</th>
+      <th><%= sortable_link "payee", 'Payee <i class="fa fa-sort"></i>' %></th>
+      <th><%= sortable_link "cheque_date", 'Cheque Date <i class="fa fa-sort"></i>' %></th>
+      <th><%= sortable_link "amount", 'Amount <i class="fa fa-sort"></i>' %></th>
+      <th><%= sortable_link "account_payee", 'A/C Payee <i class="fa fa-sort"></i>' %></th>
+      <th><%= sortable_link "paid_status", 'Debited <i class="fa fa-sort"></i>' %></th>
+      <th><%= sortable_link "bank_id", 'Bank <i class="fa fa-sort"></i>' %></th>
+      <th><%= sortable_link "user", 'User <i class="fa fa-sort"></i>' %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -22,7 +36,8 @@
         <td><%= transaction.payee %></td>
         <td><%= transaction.cheque_date.to_s(:long) %></td>
         <td><%= transaction.amount %></td>
-        <td><%= transaction.account_payee %></td>
+        <td><%= (transaction.account_payee ? 'Yes' : 'No') %></td>
+        <td><%= (transaction.paid_status ? 'Yes' : 'No') %></td>
         <td><%= transaction.bank.name %></td>
         <td><%= transaction.user.username %></td>
         <td><%= link_to 'Show', transaction %></td>
@@ -33,7 +48,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= will_paginate @products %>
 <br>
 
 <%= link_to 'New Transaction', new_transaction_path, class: 'btn btn-primary' %>

@@ -1,7 +1,12 @@
 class SessionsController < ApplicationController
   layout 'noheaderfooter', only: [:new, :create]
-  
+
   def new
+  end
+  
+  def index
+    @banks = current_user.banks.enabled
+    render layout: 'backend'
   end
   
   def create

@@ -1,0 +1,45 @@
+<% title "My Dashboard" %>
+<div class="row">
+  <% if @banks %>
+  <% @banks.each do |bank| %>
+    <div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4><%= bank.name%></h4> 
+          <p>(A/C No.: <%= bank.account_number %>)</p>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Paid Type</th>
+                <th>Count</th>
+                <th>Total Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Paid</td>
+                <td><%= bank.transactions.by_debit(true).count(:amount).to_i %></td>
+                <td><%= bank.transactions.by_debit(true).sum(:amount).to_i %></td>
+              </tr>
+              <tr>
+                <td>Un-Paid</td>
+                <td><%= bank.transactions.by_debit(false).count(:amount).to_i %></td>
+                <td><%= bank.transactions.by_debit(false).sum(:amount).to_i %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-footer">
+		      <div class="panel-footer-head">Transaction</div>
+		      <ul class="nav nav-pills nav-justified">
+			      <%= content_tag(:li, link_to(fa_stacked_icon("dollar white", base: "circle brown-lite", text: "Paid"), transactions_path(:bank => bank.id, :paid_status => true)), :class => 'li_class') %>
+			      <%= content_tag(:li, link_to(fa_stacked_icon("dollar white", base: "circle brown-lite", text: "Un-Paid"), transactions_path(:bank => bank.id, :paid_status => false)), :class => 'li_class') %>
+		      </ul>
+	      </div>
+      </div>
+    </div>
+  <% end %>
+  <% end %>
+</div>
