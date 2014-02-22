@@ -3,7 +3,7 @@ class TransactionPdf < Prawn::Document
     super(:margin => 0, :page_size => [810, 360])
     @transaction = transaction
     @view = view
-    logo
+ #   logo
     print_date
     print_payee
     print_amount_in_words
