@@ -24,6 +24,6 @@ production:
   database: chequemaker_production
   host: localhost
   pool: 5
-  username: chequemaker
-  password: chequemaker_p@ssw0rd
+  username: postgres
+  password: postgres
 
