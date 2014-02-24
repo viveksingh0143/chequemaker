@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20140219120328) do
     t.integer  "bank_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "paid_status",   default: false
+    t.integer  "paid_status"
     t.integer  "cheque_number", default: 0
   end
 
