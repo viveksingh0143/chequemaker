@@ -3,7 +3,7 @@ upstream chequemaker_server {
 }
 
 server {
-  listen 80;
+  listen 80 default deferred;
   server_name chequemaker.vamikatech.com www.chequemaker.vamikatech.com;
   root /home/vamika/apps/chequemaker/current/public;
 
