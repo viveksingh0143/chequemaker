@@ -22,7 +22,9 @@
       <th><%= sortable_link "account_payee", 'A/C Payee <i class="fa fa-sort"></i>' %></th>
       <th><%= sortable_link "paid_status", 'Debited <i class="fa fa-sort"></i>' %></th>
       <th><%= sortable_link "bank_id", 'Bank <i class="fa fa-sort"></i>' %></th>
-      <th><%= sortable_link "user", 'User <i class="fa fa-sort"></i>' %></th>
+      <% if current_user.admin %>
+        <th><%= sortable_link "user", 'User <i class="fa fa-sort"></i>' %></th>
+      <% end %>
       <th></th>
       <th></th>
       <th></th>
@@ -33,22 +35,24 @@
   <tbody>
     <% @transactions.each do |transaction| %>
       <tr>
-        <td><%= transaction.payee %></td>
-        <td><%= transaction.cheque_date.to_s(:long) %></td>
+        <td><%= link_to transaction.payee, transaction %></td>
+        <td><%= link_to transaction.cheque_date.to_s(:long), transaction %></td>
         <td><%= transaction.amount %></td>
         <td><%= (transaction.account_payee ? 'Yes' : 'No') %></td>
         <td><%= (transaction.paid_status ? 'Yes' : 'No') %></td>
         <td><%= transaction.bank.name %></td>
-        <td><%= transaction.user.username %></td>
-        <td><%= link_to 'Show', transaction %></td>
-        <td><%= link_to 'Print Cheque', transaction_path(transaction.id, :format => 'pdf') %></td>
+        <% if current_user.admin %>
+          <td><%= transaction.user.username %></td>
+        <% end %>
+        <td><%= link_to 'Debit', make_paid_transaction_path(transaction), method: :post %></td>
+        <td><%= link_to 'Print', transaction_path(transaction.id, :format => 'pdf') %></td>
         <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
         <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @products %>
+<%= will_paginate @transactions %>
 <br>
 
-<%= link_to 'New Transaction', new_transaction_path, class: 'btn btn-primary' %>
+<%= link_to 'Create Cheque', new_transaction_path, class: 'btn btn-primary' %>

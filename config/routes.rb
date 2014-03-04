@@ -1,6 +1,11 @@
 ChequeMaker::Application.routes.draw do
 
-  resources :transactions
+  resources :transactions do
+    member do
+      post 'make_paid'
+    end
+  end
+  
   resources :banks
   resources :posts
 

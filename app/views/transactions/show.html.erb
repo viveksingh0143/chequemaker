@@ -38,5 +38,4 @@
 </p>
 
 <%= link_to 'Edit', edit_transaction_path(@transaction), class: 'btn btn-primary' %> |
-<%= link_to 'Download Cheque', transaction_path(@transaction.id, :format => 'pdf') %> | 
-<%= link_to 'Back', transactions_path, class: 'btn btn-primary' %>
+<%= link_to 'Print Cheque', transaction_path(@transaction.id, :format => 'pdf'), class: 'btn btn-primary' %> 

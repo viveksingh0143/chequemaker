@@ -91,21 +91,3 @@ body {
 .placeholder img {
   border-radius: 50%;
 }
-.fa-brown {
-	color: #6f6f6f;
-}
-.fa-brown-lite {
-	color: #505050;
-}
-.fa-white {
-	color: #ffffff;
-}
-.panel-footer-head {
-  background-color: #505050;
-  color: #ffffff;
-  padding: 10px;
-  font-weight: bold;
-}
-.drop-nav {
-  list-style-type: none;
-}

@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   helper_method :sort_column, :sort_direction
-  before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :set_transaction, only: [:show, :edit, :update, :destroy, :make_paid]
   layout 'backend'
 
   # GET /transactions
@@ -24,6 +24,17 @@ class TransactionsController < ApplicationController
         pdf = TransactionPdf.new(@transaction, view_context)
         send_data pdf.render, filename: "check_#{@transaction.created_at.strftime("%d/%m/%Y")}.pdf", type: "application/pdf", disposition: 'inline' 
       end
+    end
+  end
+  
+  # POST /transactions/1
+  # POST /transactions/1.json
+  def make_paid
+    @transaction.paid_status = true
+    @transaction.save
+    respond_to do |format|
+      format.html { redirect_to transactions_url }
+      format.json
     end
   end
 

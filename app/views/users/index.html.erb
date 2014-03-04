@@ -1,0 +1,29 @@
+<% title "List Users" %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>E-Mail</th>
+      <th>Is Admin</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.username, user %></td>
+        <td><%= link_to user.email, user %></td>
+        <td><%= (user.admin ? 'Yes' : 'No') %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @users %>
+<br>
+
+<%= link_to 'Create User', new_user_path, class: 'btn btn-primary' %>

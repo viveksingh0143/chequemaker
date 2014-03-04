@@ -1,5 +1,23 @@
 <ul class="nav nav-sidebar">
-	<li class="active"><%= link_to "Overview", root_path %></li>
-	<li><%= link_to "Banks", banks_path %></li>
-	<li><%= link_to "Transactions", transactions_path %></li>
+	<li class="active"><%= link_to "Dashboard", root_path %></li>
+	<li><%= link_to "Banks", banks_path %>
+	  <ul class="drop-nav">
+	    <li><%= link_to 'List Banks', banks_path, class: 'drop-nav-li' %></li>
+	    <li><%= link_to 'New Bank', new_bank_path, class: 'drop-nav-li' %></li>
+	  </ul>
+	</li>
+	<li><%= link_to "Transactions", transactions_path %>
+	  <ul class="drop-nav">
+	    <li><%= link_to 'List Transactions', transactions_path, class: 'drop-nav-li' %></li>
+	    <li><%= link_to 'Create Cheque', new_transaction_path, class: 'drop-nav-li' %></li>
+	  </ul>
+	</li>
+	<% if current_user.admin %>
+	  <li><%= link_to "Users", users_path %>
+	    <ul class="drop-nav">
+	      <li><%= link_to 'List Users', users_path, class: 'drop-nav-li' %></li>
+	      <li><%= link_to 'Create User', new_user_path, class: 'drop-nav-li' %></li>
+	    </ul>
+	  </li>
+	<% end %>
 </ul>

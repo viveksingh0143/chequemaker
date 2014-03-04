@@ -1,0 +1,49 @@
+<% title "Editing User" %>
+
+<%= form_for @user, html: {class: "form-horizontal", role: :form} do |f| %>
+	<%= render 'layouts/messages' %>
+	<%= render 'layouts/model_error', :model => @user %>
+	<div class="form-group">
+		<%= f.label :username, class: "col-xs-12 col-sm-4 control-label" %>
+		<div class="col-xs-12 col-sm-8">
+			<%= f.text_field :username, class: "form-control", placeholder: "User name" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :email, class: "col-xs-12 col-sm-4 control-label" %>
+		<div class="col-xs-12 col-sm-8">
+			<%= f.text_field :email, class: "form-control", placeholder: "E-Mail" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :password, 'Password', class: "col-xs-12 col-sm-4 control-label" %>
+		<div class="col-xs-12 col-sm-8">
+			<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :password_confirmation, 'Password Confirmation', class: "col-xs-12 col-sm-4 control-label" %>
+		<div class="col-xs-12 col-sm-8">
+			<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+		</div>
+	</div>
+	<% if current_user.admin %>
+	  <div class="form-group">
+		  <%= f.label :admin, class: "col-xs-12 col-sm-4 control-label" %>
+		  <div class="col-xs-12 col-sm-8">
+			  <%= f.check_box :admin %>
+			  <%= f.label :admin %>
+		  </div>
+	  </div>
+	<% end %>
+	
+	<div class="form-group">
+		<div class="col-sm-12">
+			<%= f.submit "Submit", class: "btn btn-block signin" %>
+		</div>
+	</div>
+<% end %>
+<% if current_user.admin %>
+  <%= link_to 'Create user', @user, class: 'btn btn-primary' %> |
+  <%= link_to 'List Users', users_path, class: 'btn btn-primary' %>
+<% end %>
